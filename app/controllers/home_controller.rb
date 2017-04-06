@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
   private
   	def current_temperatures
-      #update_or_get_temp
+      update_or_get_temp
   		Temperature.find_lasts
   	end
 

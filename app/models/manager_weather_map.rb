@@ -12,15 +12,25 @@ class ManagerWeatherMap
   end
 
   def update
+    to_much_temperatures if @api_open_weather['list']
+    min_temperature if @api_open_weather['list'].nil?
+    
+  end
+
+  private
+
+  def to_much_temperatures
     @api_open_weather['list'].each do |wather|
-      puts "ladrones"
-      puts "wather #{wather['id']}"
       city = current_city(wather)
       create_temperatures(wather, city) if ! city.nil?
     end
   end
 
-  private
+  def min_temperature
+    city = current_city(@api_open_weather)
+    create_temperatures(@api_open_weather, city) if ! city.nil?
+  
+  end
 
   def current_city(wather)
     City.find_by(code: wather['id'])

@@ -10,14 +10,14 @@ class TemperatureIndex extends React.Component  {
 
 
   render () {
-    console.log(this.state.tmps)
-    var currentTemperatures = this.state.tmps.map(function(temperature, index) {
+    //console.log(this.state.tmps)
+    var currentTemperatures = this.state.tmps.map(function(temperature) {
       return (
           <tr>
-              <td>{temperature.city.name}</td>
-              <td>{temperature.temp}</td>
-              <td>{temperature.temp_max}</td>
-              <td>{temperature.temp_min}</td>
+              <td className="text-center">{temperature.city.name}</td>
+              <td className="text-center">{temperature.temp.toFixed(2)}</td>
+              <td className="text-center">{temperature.temp_max.toFixed(2)}</td>
+              <td className="text-center">{temperature.temp_min.toFixed(2)}</td>
             </tr>
       );
   }.bind(this));
@@ -26,15 +26,15 @@ class TemperatureIndex extends React.Component  {
     return <div>
       <div className="container">
         <h2 className="text-center">Temperatures</h2>
-        <button type="button" disabled={false} className="pull-right btn btn-success" onClick={this.updateTemperatures}>Update Temperatures </button>            
+        <button id="button_update" type="button" disabled={false} className="pull-right btn btn-success" onClick={this.updateTemperatures}>Update Temperatures </button>            
         
-        <table className="table">
+        <table className="table ml-1">
           <thead>
             <tr>
-              <th>City</th>
-              <th> Temp </th>
-              <th> Temp Max </th>
-              <th> Temp Min </th>
+              <th className="text-center">City</th>
+              <th className="text-center"> Temp ° </th>
+              <th className="text-center"> Temp Max ° </th>
+              <th className="text-center"> Temp Min ° </th>
             </tr>
           </thead>
           <tbody>
@@ -54,9 +54,15 @@ class TemperatureIndex extends React.Component  {
     current_info.done(function(data){
       info = data.result
     })
+
+    setTimeout(function() {
+      //document.getElementById('button_update').disabled = true;
+    }, 3000);
+
     this.setState({tmps: info})
-    this.state.tmps = info
-    //this.forceUpdate()
+    
+    
+
   }
 
 }
