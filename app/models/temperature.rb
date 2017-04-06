@@ -11,7 +11,7 @@ class Temperature < ApplicationRecord
 
 
   def self.is_update?
-  	return self.find_last_register.created_at + 30.minutes < Time.now unless self.find_last_register.nil?
+  	return self.find_last_register.created_at + 30.minutes < Time.now unless self.find_last_register.blank?
   	true
   end
 end

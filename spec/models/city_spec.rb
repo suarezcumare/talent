@@ -7,8 +7,8 @@ RSpec.describe City, type: :model do
     it { is_expected.to validate_presence_of(:name) }
    end
 
-   #scope :find_codes, -> { all.collect { |obj| obj.code } }
-  describe 'find codes' do
+  #scope :find_codes, -> { all.collect { |obj| obj.code } }
+  describe 'find_lasts' do
     let!(:cities) {create_list(:city, 2)}
 
     it 'not codes ' do
@@ -20,6 +20,9 @@ RSpec.describe City, type: :model do
       expect(City.find_codes).to eql( [])
     end
   end
+
+
+  
 
 
 end
