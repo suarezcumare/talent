@@ -8,12 +8,18 @@ let allTemperatures = function(){
   return $(temperatureForm()).data('temperatures')
 }
 
+let lastTemperatures = function(){
+  return $(temperatureForm()).data('last-temperatures')
+}
+
+
 
 class ManagerTemperature{
   constructor (){
     ReactDOM.render(
       <TemperatureIndex
-        temperatures={allTemperatures()}/>, temperatureForm())
+        temperatures={allTemperatures()}
+        lastTemperatures={lastTemperatures()}/>, temperatureForm())
   }
 }
 

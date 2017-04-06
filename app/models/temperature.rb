@@ -7,6 +7,7 @@ class Temperature < ApplicationRecord
   scope :num_cities, -> {City.all.count}
   scope :last_temperatures, -> { last( num_cities ) }
   scope :find_lasts, -> { last_temperatures.reverse }
+  scope :last_n_temperatures, -> (number) { last( num_cities * number ) }
   scope :find_last_register, -> { last }
 
 

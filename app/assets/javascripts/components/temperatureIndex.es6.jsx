@@ -4,7 +4,8 @@ class TemperatureIndex extends React.Component  {
 
     this.updateTemperatures = this.updateTemperatures.bind(this)
     this.state = {
-      tmps: this.props.temperatures
+      tmps: this.props.temperatures,
+      lastTmps : this.props.lastTemperatures
     }
   }
 
@@ -42,6 +43,11 @@ class TemperatureIndex extends React.Component  {
           </tbody>
         </table>
       </div>
+
+      <div className="container last-temperature">
+        <LastTemperature
+          lastTemperatures = {this.state.lastTmps}/>
+      </div>
     </div>
   }
 
@@ -52,15 +58,16 @@ class TemperatureIndex extends React.Component  {
     let current_info = new AjaxHandler(url, method).run();
     let info;
     current_info.done(function(data){
-      info = data.result
+      info = data.result.temperatures
+      info_last = data.result.last_temperatures
     })
 
     setTimeout(function() {
       //document.getElementById('button_update').disabled = true;
     }, 3000);
 
-    this.setState({tmps: info})
-    
+    this.setState({tmps: info, lastTmps: info_last})
+    this.forceUpdate();
     
 
   }
