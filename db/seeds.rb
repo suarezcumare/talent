@@ -7,8 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-City.destroy_all
 Temperature.destroy_all
+City.destroy_all
+
 City.create(code:"3884448", name:"Los Condes CL")
 City.create(code:"3875139", name:"Providencia CL")
 City.create(code:"3873544", name:"Region Metropolitana CL")
